@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Clinic;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,7 @@ class ClinicSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Clinic::factory(30)
+            ->create();
     }
 }
