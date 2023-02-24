@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Clinic;
 use Illuminate\Http\Request;
 
 class CSVController extends Controller
@@ -14,14 +15,29 @@ class CSVController extends Controller
      */
     public function ingestCSV()
     {
+        $header = null;
         $clinics = [];
 
         if (($open = fopen(storage_path() . '/sample-input.csv', 'r')) !== FALSE) {
-            while(($data = fgetcsv($open, 100, ',')) !== FALSE) {
-                $clinics[] = $data;
+            while(($row = fgetcsv($open, 100, ',')) !== FALSE) {
+                if($header === null)
+                {
+                    $header = $row;
+                    continue;
+                }
+                $clinics[] = $row;
             }
 
             fclose($open);
+        }
+
+
+        foreach ($clinics as $clinicDataRow) {
+            Clinic::firstOrCreate(
+                ['clinicID' => $clinicDataRow[0]],
+                ['clinicName' => $clinicDataRow[1]],
+                ['clinicAddress' => $clinicDataRow[2]]
+            );
         }
 
         echo "<pre>";
