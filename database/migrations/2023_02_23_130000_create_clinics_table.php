@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('clinics', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->char('clinicID', 128);
-            $table->char('clinicName', 128)->nullable($value = true);
-            $table->char('clinicAddress', 128)->nullable($value = true);
+            $table->char('clinicID');
+            $table->char('clinicName')->nullable($value = true);
+            $table->char('clinicAddress')->nullable($value = true);
             
         });
     }
