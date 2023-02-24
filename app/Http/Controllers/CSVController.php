@@ -19,9 +19,8 @@ class CSVController extends Controller
         $clinics = [];
 
         if (($open = fopen(storage_path() . '/sample-input.csv', 'r')) !== FALSE) {
-            while(($row = fgetcsv($open, 100, ',')) !== FALSE) {
-                if($header === null)
-                {
+            while (($row = fgetcsv($open, 100, ',')) !== FALSE) {
+                if ($header === null) {
                     $header = $row;
                     continue;
                 }
@@ -33,14 +32,14 @@ class CSVController extends Controller
 
 
         foreach ($clinics as $clinicDataRow) {
-            Clinic::firstOrCreate(
-                ['clinicID' => $clinicDataRow[0]],
-                ['clinicName' => $clinicDataRow[1]],
-                ['clinicAddress' => $clinicDataRow[2]]
-            );
+            print_r($clinicDataRow[2] . "         ");
+            Clinic::firstOrCreate([
+                'clinicID' => $clinicDataRow[0],
+                'clinicName' => $clinicDataRow[1],
+                'clinicAddress' => $clinicDataRow[2]
+            ]);
         }
 
         echo "<pre>";
-        print_r($clinics);
     }
 }

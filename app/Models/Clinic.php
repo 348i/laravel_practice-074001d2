@@ -12,6 +12,6 @@ class Clinic extends Model
     protected $fillable = [
         'clinicID',
         'clinicName',
-        'ClinicAddress',
+        'clinicAddress',
     ];
 }
