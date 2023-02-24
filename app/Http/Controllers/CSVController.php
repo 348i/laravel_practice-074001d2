@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Clinic;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class CSVController extends Controller
 {
@@ -32,7 +33,6 @@ class CSVController extends Controller
 
 
         foreach ($clinics as $clinicDataRow) {
-            print_r($clinicDataRow[2] . "         ");
             Clinic::firstOrCreate([
                 'clinicID' => $clinicDataRow[0],
                 'clinicName' => $clinicDataRow[1],
@@ -40,6 +40,8 @@ class CSVController extends Controller
             ]);
         }
 
-        echo "<pre>";
+        return Inertia::render('Clinics/Index', [
+            'clinics' => Clinic::all(),
+        ]);
     }
 }

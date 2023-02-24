@@ -17,16 +17,16 @@ use App\Http\Controllers\CSVController;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-    ]);
-});
+// Route::get('/', function () {
+//     return Inertia::render('Welcome', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//     ]);
+// });
 
 Route::get('clinics', [ClinicController::class, 'index']);
 
-Route::get('/readCSV', [CSVController::class, 'ingestCSV']);
+Route::get('/', [CSVController::class, 'ingestCSV']);
 
 // Route::middleware([
 //     'auth:sanctum',
