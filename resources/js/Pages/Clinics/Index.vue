@@ -19,7 +19,7 @@ defineProps({
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="clinic in clinics" :key="clinic.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
+                    <tr v-for="clinic in clinics" :key="clinic.id" class="hover:bg-blue-100 focus-within:bg-gray-100">
                         <td class="border-t">{{ clinic.clinicID }}</td>
                         <td class="border-t">{{ clinic.clinicName }}</td>
                         <td class="border-t">{{ clinic.clinicAddress }}</td>
